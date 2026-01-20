@@ -1,0 +1,355 @@
+{
+  "version": "1.0",
+  "ultimaActualizacion": "2025-12-02",
+  "descripcion": "Plantillas de formato de entrega por categoría de agente - Basado en estándares de la industria",
+
+  "categorias": {
+    "financial": {
+      "nombre": "Agentes Financieros",
+      "agentes": [2, 3, 4, 5, 6, 7, 24],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["texto", "tabla", "grafica", "excel"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN EJECUTIVO FINANCIERO",
+          "ESTADO DE RESULTADOS (P&L)",
+          "INDICADORES CLAVE (KPIs)",
+          "ANÁLISIS DE COSTOS",
+          "GRÁFICAS DE RENDIMIENTO",
+          "RECOMENDACIONES FINANCIERAS"
+        ],
+        "metricas_obligatorias": [
+          "Food Cost %",
+          "Labor Cost %",
+          "Prime Cost %",
+          "Gross Profit Margin %",
+          "Net Profit Margin %",
+          "EBITDA",
+          "RevPASH (Revenue Per Available Seat Hour)",
+          "Ticket Promedio",
+          "Rotación de Inventario"
+        ],
+        "tablas": {
+          "estado_resultados": {
+            "titulo": "ESTADO DE RESULTADOS",
+            "columnas": ["Concepto", "Monto ($)", "% de Ventas", "Benchmark", "Variación"],
+            "filas": [
+              "Ventas Totales",
+              "(-) Costo de Ventas (COGS)",
+              "= Utilidad Bruta",
+              "(-) Gastos de Operación",
+              "   - Nómina",
+              "   - Renta",
+              "   - Servicios",
+              "   - Marketing",
+              "   - Otros",
+              "= EBITDA",
+              "(-) Depreciación",
+              "= Utilidad Operativa",
+              "(-) Intereses",
+              "(-) Impuestos",
+              "= Utilidad Neta"
+            ],
+            "formulas_excel": {
+              "utilidad_bruta": "=Ventas-COGS",
+              "margen_bruto": "=Utilidad_Bruta/Ventas*100",
+              "food_cost_pct": "=COGS/Ventas*100",
+              "labor_cost_pct": "=Nomina/Ventas*100",
+              "prime_cost": "=(COGS+Nomina)/Ventas*100"
+            }
+          },
+          "kpis_dashboard": {
+            "titulo": "DASHBOARD DE KPIs",
+            "metricas": [
+              {"nombre": "Food Cost", "formula": "=COGS/Ventas", "benchmark": "28-32%", "semaforo": true},
+              {"nombre": "Labor Cost", "formula": "=Nomina/Ventas", "benchmark": "25-30%", "semaforo": true},
+              {"nombre": "Prime Cost", "formula": "=(COGS+Nomina)/Ventas", "benchmark": "55-65%", "semaforo": true},
+              {"nombre": "Ticket Promedio", "formula": "=Ventas/NumeroClientes", "benchmark": "variable", "semaforo": false},
+              {"nombre": "Ocupación", "formula": "=ClientesAtendidos/Capacidad", "benchmark": "70-85%", "semaforo": true}
+            ]
+          }
+        },
+        "graficas": [
+          {"tipo": "pie", "titulo": "Distribución de Costos", "datos": ["Food Cost", "Labor", "Renta", "Servicios", "Otros"]},
+          {"tipo": "bar", "titulo": "Ventas por Día de la Semana", "datos": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]},
+          {"tipo": "line", "titulo": "Tendencia Mensual de Ventas", "datos": "12 meses"},
+          {"tipo": "gauge", "titulo": "Food Cost vs Benchmark", "datos": "porcentaje"}
+        ],
+        "ejemplo_formato": "══════════════════════════════════════════\n         ANÁLISIS FINANCIERO\n         [Nombre del Negocio]\n         Período: [Mes/Año]\n══════════════════════════════════════════\n\n📊 RESUMEN EJECUTIVO\n[2-3 párrafos con hallazgos principales]\n\n💰 ESTADO DE RESULTADOS\n┌──────────────────┬──────────┬─────────┬──────────┐\n│ Concepto         │ Monto    │ % Venta │ Benchmark│\n├──────────────────┼──────────┼─────────┼──────────┤\n│ Ventas Totales   │ $XXX,XXX │  100%   │    -     │\n│ Costo de Ventas  │ $XX,XXX  │   XX%   │  28-32%  │\n│ Utilidad Bruta   │ $XX,XXX  │   XX%   │  68-72%  │\n│ Gastos Operación │ $XX,XXX  │   XX%   │  45-55%  │\n│ Utilidad Neta    │ $XX,XXX  │   XX%   │  10-15%  │\n└──────────────────┴──────────┴─────────┴──────────┘\n\n📈 KPIs CLAVE\n• Food Cost: XX% [🟢/🟡/🔴]\n• Labor Cost: XX% [🟢/🟡/🔴]\n• Prime Cost: XX% [🟢/🟡/🔴]\n• Ticket Promedio: $XXX\n\n📉 GRÁFICAS\n[Se generan automáticamente con los datos]\n\n💡 RECOMENDACIONES\n1. [Acción prioritaria]\n2. [Segunda acción]\n3. [Tercera acción]"
+      }
+    },
+
+    "marketing": {
+      "nombre": "Agentes de Marketing",
+      "agentes": [9, 10, 11, 31, 36, 37, 38, 39, 40, 41],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["texto", "parrilla", "imagen", "calendario"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN DE ESTRATEGIA",
+          "PARRILLA DE CONTENIDO SEMANAL/MENSUAL",
+          "CALENDARIO DE PUBLICACIONES",
+          "MÉTRICAS DE PERFORMANCE",
+          "CREATIVOS SUGERIDOS"
+        ],
+        "parrilla_redes": {
+          "titulo": "PARRILLA DE CONTENIDO - [SEMANA/MES]",
+          "columnas": ["Fecha", "Plataforma", "Tipo", "Título/Copy", "Hashtags", "Horario", "Estado"],
+          "plataformas": ["Instagram", "Facebook", "TikTok", "LinkedIn", "X/Twitter"],
+          "tipos_contenido": ["Reel", "Carrusel", "Historia", "Post estático", "Video", "Live"],
+          "horarios_optimos": {
+            "Instagram": ["12:00-14:00", "19:00-21:00"],
+            "Facebook": ["09:00-11:00", "13:00-15:00"],
+            "TikTok": ["19:00-22:00"],
+            "LinkedIn": ["08:00-10:00", "17:00-18:00"]
+          }
+        },
+        "calendario_mensual": {
+          "titulo": "CALENDARIO DE CONTENIDO - [MES]",
+          "estructura_grid": "Lunes a Domingo x 4-5 semanas",
+          "codigos_color": {
+            "promocion": "#FF6B6B",
+            "educativo": "#4ECDC4",
+            "entretenimiento": "#45B7D1",
+            "user_generated": "#96CEB4",
+            "producto": "#FFEAA7"
+          }
+        },
+        "metricas_performance": [
+          "Alcance (Reach)",
+          "Impresiones",
+          "Engagement Rate",
+          "CTR (Click-Through Rate)",
+          "Conversiones",
+          "Costo por Click (CPC)",
+          "Costo por Adquisición (CPA)",
+          "ROAS (Return on Ad Spend)"
+        ],
+        "ejemplo_formato": "══════════════════════════════════════════\n    PLAN DE MARKETING DIGITAL\n    [Nombre del Negocio]\n    [Período]\n══════════════════════════════════════════\n\n🎯 ESTRATEGIA DEL PERÍODO\n[Objetivo principal y enfoque]\n\n📱 PARRILLA DE CONTENIDO SEMANAL\n┌─────────┬───────────┬──────────┬────────────────────────┬─────────┐\n│ Día     │ Plataforma│ Tipo     │ Contenido              │ Horario │\n├─────────┼───────────┼──────────┼────────────────────────┼─────────┤\n│ Lunes   │ Instagram │ Reel     │ \"Tip de la semana...\"  │ 19:00   │\n│ Martes  │ Facebook  │ Post     │ \"Promo martes...\"      │ 12:00   │\n│ Miércoles│ TikTok   │ Video    │ \"Detrás de cámaras...\" │ 20:00   │\n│ Jueves  │ Instagram │ Carrusel │ \"5 razones para...\"    │ 13:00   │\n│ Viernes │ Todas     │ Historia │ \"Weekend vibes...\"     │ 18:00   │\n│ Sábado  │ Instagram │ Reel     │ \"El ambiente...\"       │ 19:00   │\n│ Domingo │ Facebook  │ Post     │ \"Cierre de semana...\"  │ 11:00   │\n└─────────┴───────────┴──────────┴────────────────────────┴─────────┘\n\n📊 MÉTRICAS OBJETIVO\n• Alcance semanal: X,XXX\n• Engagement rate: X.X%\n• Nuevos seguidores: XXX\n• Clicks al perfil/web: XXX\n\n🎨 CREATIVOS SUGERIDOS\n[Descripciones detalladas de cada pieza visual]\n\n#️⃣ HASHTAGS RECOMENDADOS\n[Lista de 20-30 hashtags organizados por categoría]"
+      }
+    },
+
+    "legal": {
+      "nombre": "Agentes Legales",
+      "agentes": [44, 45, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 72],
+      "formatoSalida": "texto",
+      "tiposEntrega": ["documento_legal", "escrito_judicial", "contrato", "dictamen"],
+      "plantilla": {
+        "estructura_escrito_judicial": [
+          "RUBRO/ENCABEZADO",
+          "PROEMIO",
+          "ANTECEDENTES/HECHOS",
+          "FUNDAMENTOS DE DERECHO",
+          "PETITORIO",
+          "PIE/CIERRE"
+        ],
+        "estructura_contrato": [
+          "TÍTULO DEL CONTRATO",
+          "DECLARACIONES",
+          "CLÁUSULAS",
+          "FIRMAS",
+          "ANEXOS"
+        ],
+        "estructura_dictamen": [
+          "CARÁTULA",
+          "ANTECEDENTES",
+          "ANÁLISIS JURÍDICO",
+          "CONCLUSIONES",
+          "RECOMENDACIONES"
+        ],
+        "elementos_obligatorios": {
+          "escrito_judicial": ["Número de expediente", "Juzgado", "Partes", "Fundamentos legales", "Firma"],
+          "contrato": ["Partes contratantes", "Objeto", "Vigencia", "Contraprestación", "Jurisdicción"],
+          "dictamen": ["Asunto consultado", "Marco legal", "Opinión fundamentada"]
+        },
+        "ejemplo_formato_escrito": "═══════════════════════════════════════════════════════\n                    [TIPO DE ESCRITO]\n═══════════════════════════════════════════════════════\n\nEXPEDIENTE: [Número]\nJUZGADO: [Nombre del Juzgado]\nACTOR: [Nombre]\nDEMANDADO: [Nombre]\nASUNTO: [Tipo de escrito]\n\n═══════════════════════════════════════════════════════\n\nC. JUEZ [Número] [Materia] DEL DISTRITO JUDICIAL DE [Ciudad]\nPRESENTE.\n\n[NOMBRE COMPLETO], por mi propio derecho, señalando como \ndomicilio para oír y recibir notificaciones el ubicado en \n[DOMICILIO], autorizando para oírlas y recibirlas a \n[NOMBRE DEL ABOGADO], con cédula profesional número \n[NÚMERO], ante Usted con el debido respeto comparezco \npara exponer:\n\n                         HECHOS\n\nPRIMERO.- [Descripción cronológica de los hechos]\n\nSEGUNDO.- [Continuación de los hechos]\n\n                    FUNDAMENTOS DE DERECHO\n\n[Artículos y jurisprudencia aplicables]\n\n                      PUNTOS PETITORIOS\n\nPor lo anteriormente expuesto y fundado, a Usted C. Juez,\natentamente pido:\n\nPRIMERO.- [Primera petición]\n\nSEGUNDO.- [Segunda petición]\n\n                    PROTESTO LO NECESARIO\n\n[Ciudad], [Estado], a [Fecha]\n\n\n\n_________________________________\n[Nombre del promovente]"
+      }
+    },
+
+    "operational": {
+      "nombre": "Agentes Operativos",
+      "agentes": [8, 14, 15, 16, 17, 18, 29, 46, 47, 48, 49, 50, 51],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["checklist", "proceso", "inventario", "manual"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN OPERATIVO",
+          "CHECKLIST DE TAREAS",
+          "INVENTARIO/STOCK",
+          "PROCESOS Y PROCEDIMIENTOS",
+          "INDICADORES OPERATIVOS"
+        ],
+        "checklist_apertura": {
+          "titulo": "CHECKLIST DE APERTURA",
+          "secciones": [
+            {"nombre": "Limpieza", "items": ["Pisos barridos/trapeados", "Mesas limpias", "Baños verificados", "Vidrios limpios"]},
+            {"nombre": "Equipo", "items": ["Refrigeradores temperatura OK", "Estufas encendidas", "Freidoras listas", "Cafetera lista"]},
+            {"nombre": "Mise en Place", "items": ["Vegetales cortados", "Salsas preparadas", "Proteínas porcionadas", "Guarniciones listas"]},
+            {"nombre": "Servicio", "items": ["Mesas montadas", "Servilleteros llenos", "Saleros/pimenteros", "Menús disponibles"]}
+          ]
+        },
+        "checklist_cierre": {
+          "titulo": "CHECKLIST DE CIERRE",
+          "secciones": [
+            {"nombre": "Cocina", "items": ["Equipos apagados", "Superficies limpias", "Alimentos guardados", "Basura sacada"]},
+            {"nombre": "Inventario", "items": ["Conteo realizado", "Mermas registradas", "Pedidos actualizados"]},
+            {"nombre": "Caja", "items": ["Corte de caja", "Efectivo contado", "Cierre de terminales", "Reporte generado"]},
+            {"nombre": "Seguridad", "items": ["Puertas cerradas", "Alarma activada", "Luces apagadas", "Gas cerrado"]}
+          ]
+        },
+        "inventario": {
+          "titulo": "CONTROL DE INVENTARIO",
+          "columnas": ["Producto", "Unidad", "Stock Actual", "Stock Mínimo", "Stock Máximo", "Costo Unit.", "Valor Total", "Estado"],
+          "categorias": ["Proteínas", "Lácteos", "Vegetales", "Secos", "Bebidas", "Limpieza", "Desechables"]
+        },
+        "ejemplo_formato": "══════════════════════════════════════════\n       REPORTE OPERATIVO DIARIO\n       [Nombre del Negocio]\n       Fecha: [DD/MM/YYYY]\n══════════════════════════════════════════\n\n📋 CHECKLIST DE APERTURA\n┌────────────────────────────────┬────────┐\n│ Tarea                          │ Estado │\n├────────────────────────────────┼────────┤\n│ ☑ Limpieza general completada  │   ✅   │\n│ ☑ Equipos verificados          │   ✅   │\n│ ☑ Mise en place lista          │   ✅   │\n│ ☐ Inventario actualizado       │   ⏳   │\n└────────────────────────────────┴────────┘\n\n📦 INVENTARIO CRÍTICO\n┌──────────────┬────────┬────────┬─────────┐\n│ Producto     │ Stock  │ Mínimo │ Estado  │\n├──────────────┼────────┼────────┼─────────┤\n│ Carne res    │ 15 kg  │ 20 kg  │ 🔴 Bajo │\n│ Pollo        │ 25 kg  │ 15 kg  │ 🟢 OK   │\n│ Aceite       │ 8 L    │ 10 L   │ 🟡 Medio│\n└──────────────┴────────┴────────┴─────────┘\n\n📊 INDICADORES DEL DÍA\n• Platos vendidos: XXX\n• Tiempo promedio ticket: XX min\n• Incidencias: X\n• Merma del día: $XXX\n\n⚠️ ALERTAS\n• [Alerta 1]\n• [Alerta 2]\n\n✅ TAREAS PENDIENTES\n1. [Tarea 1]\n2. [Tarea 2]"
+      }
+    },
+
+    "hr": {
+      "nombre": "Agentes de Recursos Humanos",
+      "agentes": [19, 20, 21, 22, 52, 53, 54, 55],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["reporte", "evaluacion", "plan", "politica"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN EJECUTIVO HR",
+          "MÉTRICAS DE PERSONAL",
+          "ANÁLISIS DE ROTACIÓN",
+          "CAPACITACIÓN Y DESARROLLO",
+          "RECOMENDACIONES"
+        ],
+        "metricas_obligatorias": [
+          "Headcount total",
+          "Tasa de rotación",
+          "Tasa de retención",
+          "Ausentismo",
+          "Horas extra",
+          "Costo de nómina",
+          "Costo por empleado",
+          "Tiempo promedio de contratación",
+          "Satisfacción del empleado"
+        ],
+        "dashboard_hr": {
+          "titulo": "DASHBOARD DE RECURSOS HUMANOS",
+          "secciones": [
+            {"nombre": "Plantilla", "metricas": ["Total empleados", "Por área", "Por turno", "Vacantes"]},
+            {"nombre": "Rotación", "metricas": ["Tasa mensual", "Tasa anual", "Por área", "Costo de rotación"]},
+            {"nombre": "Asistencia", "metricas": ["% Asistencia", "Faltas", "Retardos", "Horas extra"]},
+            {"nombre": "Capacitación", "metricas": ["Horas de training", "Cursos completados", "Certificaciones"]}
+          ]
+        },
+        "ejemplo_formato": "══════════════════════════════════════════\n      REPORTE DE RECURSOS HUMANOS\n      [Nombre del Negocio]\n      Período: [Mes/Año]\n══════════════════════════════════════════\n\n👥 RESUMEN DE PLANTILLA\n• Total empleados: XX\n• Nuevas contrataciones: X\n• Bajas: X\n• Vacantes abiertas: X\n\n📊 INDICADORES CLAVE\n┌────────────────────┬─────────┬──────────┬─────────┐\n│ Indicador          │ Actual  │ Meta     │ Estado  │\n├────────────────────┼─────────┼──────────┼─────────┤\n│ Rotación mensual   │ X.X%    │ <5%      │ 🟢/🟡/🔴│\n│ Ausentismo         │ X.X%    │ <3%      │ 🟢/🟡/🔴│\n│ Satisfacción       │ X.X/5   │ >4.0     │ 🟢/🟡/🔴│\n│ Horas capacitación │ XX hrs  │ 20 hrs   │ 🟢/🟡/🔴│\n└────────────────────┴─────────┴──────────┴─────────┘\n\n📈 ANÁLISIS DE ROTACIÓN\n• Principales causas de baja:\n  1. [Causa 1] - XX%\n  2. [Causa 2] - XX%\n  3. [Causa 3] - XX%\n\n• Costo estimado de rotación: $XX,XXX\n\n🎓 CAPACITACIÓN\n• Cursos impartidos: X\n• Empleados capacitados: XX\n• Horas totales: XX\n\n💡 RECOMENDACIONES\n1. [Recomendación 1]\n2. [Recomendación 2]\n3. [Recomendación 3]"
+      }
+    },
+
+    "strategy": {
+      "nombre": "Agentes de Estrategia",
+      "agentes": [1, 23, 25, 26, 27, 28, 42, 43],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["analisis", "plan_estrategico", "presentacion", "scorecard"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN EJECUTIVO",
+          "ANÁLISIS SITUACIONAL",
+          "ANÁLISIS FODA/SWOT",
+          "OBJETIVOS ESTRATÉGICOS",
+          "PLAN DE ACCIÓN",
+          "KPIs Y SEGUIMIENTO"
+        ],
+        "frameworks": {
+          "foda": {
+            "titulo": "ANÁLISIS FODA",
+            "cuadrantes": ["Fortalezas", "Oportunidades", "Debilidades", "Amenazas"]
+          },
+          "balanced_scorecard": {
+            "perspectivas": ["Financiera", "Cliente", "Procesos Internos", "Aprendizaje y Crecimiento"]
+          },
+          "porter": {
+            "fuerzas": ["Competidores", "Proveedores", "Clientes", "Sustitutos", "Nuevos entrantes"]
+          }
+        },
+        "ejemplo_formato": "══════════════════════════════════════════\n       ANÁLISIS ESTRATÉGICO\n       [Nombre del Negocio]\n       [Período/Proyecto]\n══════════════════════════════════════════\n\n🎯 RESUMEN EJECUTIVO\n[Síntesis de hallazgos y recomendaciones principales]\n\n📊 ANÁLISIS FODA\n┌─────────────────────┬─────────────────────┐\n│     FORTALEZAS      │    OPORTUNIDADES    │\n│  (Interno/Positivo) │  (Externo/Positivo) │\n├─────────────────────┼─────────────────────┤\n│ • [F1]              │ • [O1]              │\n│ • [F2]              │ • [O2]              │\n│ • [F3]              │ • [O3]              │\n├─────────────────────┼─────────────────────┤\n│     DEBILIDADES     │      AMENAZAS       │\n│  (Interno/Negativo) │  (Externo/Negativo) │\n├─────────────────────┼─────────────────────┤\n│ • [D1]              │ • [A1]              │\n│ • [D2]              │ • [A2]              │\n│ • [D3]              │ • [A3]              │\n└─────────────────────┴─────────────────────┘\n\n🎯 OBJETIVOS ESTRATÉGICOS\n1. [Objetivo 1] - Meta: [X] - Plazo: [Y]\n2. [Objetivo 2] - Meta: [X] - Plazo: [Y]\n3. [Objetivo 3] - Meta: [X] - Plazo: [Y]\n\n📋 PLAN DE ACCIÓN\n┌────────────────┬──────────┬───────────┬──────────┐\n│ Acción         │ Responsable│ Fecha    │ Recursos │\n├────────────────┼──────────┼───────────┼──────────┤\n│ [Acción 1]     │ [Quién]  │ [Cuándo]  │ [Qué]    │\n│ [Acción 2]     │ [Quién]  │ [Cuándo]  │ [Qué]    │\n└────────────────┴──────────┴───────────┴──────────┘\n\n📈 KPIs DE SEGUIMIENTO\n• [KPI 1]: Meta X, Actual Y\n• [KPI 2]: Meta X, Actual Y"
+      }
+    },
+
+    "technology": {
+      "nombre": "Agentes de Tecnología",
+      "agentes": [32, 33, 71],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["codigo", "documentacion", "arquitectura", "reporte_tecnico"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN TÉCNICO",
+          "ARQUITECTURA/DIAGRAMA",
+          "CÓDIGO/IMPLEMENTACIÓN",
+          "DOCUMENTACIÓN",
+          "TESTING/VALIDACIÓN",
+          "DEPLOYMENT/PRODUCCIÓN"
+        ],
+        "ejemplo_formato": "══════════════════════════════════════════\n       DOCUMENTACIÓN TÉCNICA\n       [Nombre del Proyecto/Feature]\n       Versión: [X.X.X]\n══════════════════════════════════════════\n\n📋 RESUMEN\n[Descripción del problema y solución]\n\n🏗️ ARQUITECTURA\n[Diagrama o descripción de componentes]\n\n💻 IMPLEMENTACIÓN\n```[lenguaje]\n// Código aquí\n```\n\n📖 DOCUMENTACIÓN\n• Endpoint: [URL]\n• Método: [GET/POST/etc]\n• Parámetros: [Lista]\n• Respuesta: [Formato]\n\n🧪 TESTING\n• Tests unitarios: ✅/❌\n• Tests de integración: ✅/❌\n• Coverage: XX%\n\n🚀 DEPLOYMENT\n• Ambiente: [Dev/Staging/Prod]\n• Fecha: [DD/MM/YYYY]\n• Notas: [Consideraciones]"
+      }
+    },
+
+    "customer": {
+      "nombre": "Agentes de Atención al Cliente",
+      "agentes": [12, 13, 30, 34, 35, 56, 57],
+      "formatoSalida": "mixto",
+      "tiposEntrega": ["reporte", "encuesta", "analisis_feedback", "plan_mejora"],
+      "plantilla": {
+        "estructura": [
+          "RESUMEN DE SATISFACCIÓN",
+          "MÉTRICAS DE SERVICIO",
+          "ANÁLISIS DE FEEDBACK",
+          "CASOS DESTACADOS",
+          "PLAN DE MEJORA"
+        ],
+        "metricas_obligatorias": [
+          "NPS (Net Promoter Score)",
+          "CSAT (Customer Satisfaction)",
+          "CES (Customer Effort Score)",
+          "Tiempo de respuesta",
+          "Tasa de resolución",
+          "Reviews promedio",
+          "Quejas vs Felicitaciones"
+        ],
+        "ejemplo_formato": "══════════════════════════════════════════\n    REPORTE DE EXPERIENCIA DEL CLIENTE\n    [Nombre del Negocio]\n    Período: [Mes/Año]\n══════════════════════════════════════════\n\n⭐ RESUMEN DE SATISFACCIÓN\n• NPS: XX (Meta: >50)\n• CSAT: X.X/5 (Meta: >4.2)\n• Rating promedio: X.X ⭐\n\n📊 MÉTRICAS DE SERVICIO\n┌────────────────────┬─────────┬──────────┐\n│ Métrica            │ Actual  │ Meta     │\n├────────────────────┼─────────┼──────────┤\n│ NPS                │ XX      │ >50      │\n│ CSAT               │ X.X     │ >4.2     │\n│ Tiempo respuesta   │ XX min  │ <30 min  │\n│ Tasa resolución    │ XX%     │ >90%     │\n└────────────────────┴─────────┴──────────┘\n\n💬 ANÁLISIS DE FEEDBACK\n\nComentarios Positivos (XX%):\n• [Tema 1] - XX menciones\n• [Tema 2] - XX menciones\n\nÁreas de Mejora (XX%):\n• [Tema 1] - XX menciones\n• [Tema 2] - XX menciones\n\n📍 CASOS DESTACADOS\n✅ Positivo: [Descripción del caso]\n⚠️ Negativo: [Descripción del caso]\n\n💡 PLAN DE MEJORA\n1. [Acción 1] - Impacto: [Alto/Medio/Bajo]\n2. [Acción 2] - Impacto: [Alto/Medio/Bajo]"
+      }
+    }
+  },
+
+  "graficas_disponibles": {
+    "tipos": [
+      {"id": "pie", "nombre": "Gráfica de Pastel", "uso": "Distribución porcentual"},
+      {"id": "bar", "nombre": "Gráfica de Barras", "uso": "Comparaciones"},
+      {"id": "line", "nombre": "Gráfica de Línea", "uso": "Tendencias en el tiempo"},
+      {"id": "doughnut", "nombre": "Dona", "uso": "Distribución con espacio central"},
+      {"id": "radar", "nombre": "Radar", "uso": "Múltiples dimensiones"},
+      {"id": "gauge", "nombre": "Indicador", "uso": "Progreso vs meta"},
+      {"id": "heatmap", "nombre": "Mapa de Calor", "uso": "Patrones por día/hora"},
+      {"id": "funnel", "nombre": "Embudo", "uso": "Conversión por etapas"}
+    ],
+    "colores_corporativos": {
+      "primario": "#2563EB",
+      "secundario": "#10B981",
+      "alerta": "#F59E0B",
+      "peligro": "#EF4444",
+      "neutro": "#6B7280",
+      "exito": "#22C55E"
+    }
+  },
+
+  "formatos_exportacion": {
+    "disponibles": ["PDF", "Excel", "Word", "PowerPoint", "CSV", "JSON"],
+    "por_categoria": {
+      "financial": ["Excel", "PDF", "PowerPoint"],
+      "marketing": ["PDF", "PowerPoint", "Excel"],
+      "legal": ["Word", "PDF"],
+      "operational": ["Excel", "PDF"],
+      "hr": ["Excel", "PDF", "PowerPoint"],
+      "strategy": ["PowerPoint", "PDF", "Word"],
+      "technology": ["PDF", "Markdown", "JSON"],
+      "customer": ["PDF", "Excel", "PowerPoint"]
+    }
+  }
+}

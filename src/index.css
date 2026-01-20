@@ -1,0 +1,867 @@
+@import "tailwindcss";
+
+/* Vértice Estrategia Gastronómica - Identidad Corporativa */
+:root {
+  /* Colores principales */
+  --vertice-gold: #C0A062;
+  --vertice-gold-light: #D4B87A;
+  --vertice-gold-dark: #A68B4B;
+  --vertice-black: #0A0A0A;
+  --vertice-gray-dark: #1A1A1A;
+  --vertice-gray: #2A2A2A;
+  --vertice-gray-light: #3A3A3A;
+}
+
+/* Tipografías */
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Utilidades de color oro Vértice */
+.text-vertice-gold {
+  color: #C0A062;
+}
+
+.bg-vertice-gold {
+  background-color: #C0A062;
+}
+
+.border-vertice-gold {
+  border-color: #C0A062;
+}
+
+/* Gradientes corporativos */
+.bg-gradient-vertice {
+  background: linear-gradient(135deg, #C0A062 0%, #A68B4B 50%, #8B7340 100%);
+}
+
+.bg-gradient-vertice-dark {
+  background: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+}
+
+/* Sombra dorada */
+.shadow-vertice {
+  box-shadow: 0 4px 20px rgba(192, 160, 98, 0.3);
+}
+
+/* Ring dorado para focus */
+.ring-vertice {
+  --tw-ring-color: rgba(192, 160, 98, 0.5);
+}
+
+/* Estilos para reportes de agentes - evitar superposición de líneas */
+.whitespace-pre-wrap {
+  line-height: 1.6;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Mejorar legibilidad en textos pequeños */
+.text-xs {
+  line-height: 1.5;
+}
+
+.text-sm {
+  line-height: 1.6;
+}
+
+/* Scrollbar personalizado para contenedores de reportes */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background: rgba(192, 160, 98, 0.4);
+  border-radius: 3px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background: rgba(192, 160, 98, 0.6);
+}
+
+/* Toast Notification Animations */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Modal Animations */
+@keyframes modalBackdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalContentIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-backdrop {
+  animation: modalBackdropIn 0.2s ease-out;
+}
+
+.animate-modal-content {
+  animation: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Button Loading Animations */
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(192, 160, 98, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(192, 160, 98, 0);
+  }
+}
+
+@keyframes spinnerRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin-left: -8px;
+  margin-top: -8px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spinnerRotate 0.6s linear infinite;
+}
+
+.btn-pulse {
+  animation: buttonPulse 1.5s ease-in-out infinite;
+}
+
+/* Search Feedback Animation */
+@keyframes searchPing {
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.search-ping::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(192, 160, 98, 0.3);
+  animation: searchPing 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ============================================
+   SKELETON LOADERS
+   ============================================ */
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(192, 160, 98, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+.skeleton-card {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 30, 30, 0.8) 25%,
+    rgba(50, 50, 50, 0.8) 50%,
+    rgba(30, 30, 30, 0.8) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: 16px;
+}
+
+.skeleton-text {
+  height: 1em;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+.skeleton-avatar {
+  background: linear-gradient(
+    90deg,
+    rgba(192, 160, 98, 0.1) 25%,
+    rgba(192, 160, 98, 0.2) 50%,
+    rgba(192, 160, 98, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.5s ease-in-out infinite;
+  border-radius: 50%;
+}
+
+/* ============================================
+   TOOLTIPS
+   ============================================ */
+.tooltip-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  padding: 8px 12px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(192, 160, 98, 0.3);
+  border-radius: 8px;
+  font-size: 12px;
+  color: #e5e5e5;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(20, 20, 20, 0.95);
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Data attribute tooltip (simpler usage) */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  padding: 8px 12px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(192, 160, 98, 0.3);
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  color: #e5e5e5;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+[data-tooltip]::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: rgba(20, 20, 20, 0.95);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+[data-tooltip]:hover::before {
+  transform: translateX(-50%) scale(1);
+}
+
+/* Tooltip positions */
+.tooltip-bottom {
+  top: calc(100% + 8px);
+  bottom: auto;
+}
+
+.tooltip-bottom::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: rgba(20, 20, 20, 0.95);
+}
+
+.tooltip-left {
+  left: auto;
+  right: calc(100% + 8px);
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.tooltip-left::after {
+  top: 50%;
+  left: 100%;
+  bottom: auto;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-left-color: rgba(20, 20, 20, 0.95);
+}
+
+.tooltip-container:hover .tooltip-left {
+  transform: translateY(-50%) scale(1);
+}
+
+.tooltip-right {
+  left: calc(100% + 8px);
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%) scale(0.95);
+}
+
+.tooltip-right::after {
+  top: 50%;
+  right: 100%;
+  left: auto;
+  bottom: auto;
+  transform: translateY(-50%);
+  border-top-color: transparent;
+  border-right-color: rgba(20, 20, 20, 0.95);
+}
+
+.tooltip-container:hover .tooltip-right {
+  transform: translateY(-50%) scale(1);
+}
+
+/* ============================================
+   CONNECTION STATUS INDICATOR
+   ============================================ */
+@keyframes connectionPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes connectionBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.connection-online {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.connection-online .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: connectionPulse 2s ease-in-out infinite;
+}
+
+.connection-offline {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.connection-offline .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: connectionBlink 1s ease-in-out infinite;
+}
+
+.connection-reconnecting {
+  background: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+  color: #fbbf24;
+}
+
+.connection-reconnecting .status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fbbf24;
+  animation: spinnerRotate 1s linear infinite;
+}
+
+/* ============================================
+   ENHANCED CARD HOVER EFFECTS
+   ============================================ */
+.card-hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4),
+              0 0 0 1px rgba(192, 160, 98, 0.2);
+}
+
+.card-hover-glow {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.card-hover-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg,
+    rgba(192, 160, 98, 0) 0%,
+    rgba(192, 160, 98, 0.3) 50%,
+    rgba(192, 160, 98, 0) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card-hover-glow:hover::before {
+  opacity: 1;
+}
+
+.card-hover-scale {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* ============================================
+   CONFIRMATION DIALOG
+   ============================================ */
+@keyframes confirmShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.confirm-dialog {
+  background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+  border: 1px solid rgba(192, 160, 98, 0.3);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 400px;
+  animation: modalContentIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.confirm-danger {
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.confirm-danger .confirm-icon {
+  color: #ef4444;
+  animation: confirmShake 0.5s ease-in-out;
+}
+
+/* ============================================
+   SCROLL INDICATORS
+   ============================================ */
+.scroll-indicator-top,
+.scroll-indicator-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-indicator-top {
+  top: 0;
+  background: linear-gradient(to bottom,
+    rgba(10, 10, 10, 0.9) 0%,
+    transparent 100%);
+}
+
+.scroll-indicator-bottom {
+  bottom: 0;
+  background: linear-gradient(to top,
+    rgba(10, 10, 10, 0.9) 0%,
+    transparent 100%);
+}
+
+.scroll-indicator-top.visible,
+.scroll-indicator-bottom.visible {
+  opacity: 1;
+}
+
+.scroll-indicator-arrow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(192, 160, 98, 0.6);
+  animation: floatUpDown 1.5s ease-in-out infinite;
+}
+
+.scroll-indicator-top .scroll-indicator-arrow {
+  top: 8px;
+}
+
+.scroll-indicator-bottom .scroll-indicator-arrow {
+  bottom: 8px;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(4px); }
+}
+
+/* ============================================
+   EMPTY STATES
+   ============================================ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+  color: rgba(192, 160, 98, 0.4);
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+.empty-state-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e5e5e5;
+  margin-bottom: 8px;
+}
+
+.empty-state-description {
+  font-size: 14px;
+  color: #9ca3af;
+  max-width: 300px;
+  line-height: 1.6;
+}
+
+/* ============================================
+   BREADCRUMBS
+   ============================================ */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breadcrumb-link {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #C0A062;
+}
+
+.breadcrumb-current {
+  color: #e5e5e5;
+  font-weight: 500;
+}
+
+.breadcrumb-separator {
+  color: rgba(192, 160, 98, 0.4);
+}
+
+/* ============================================
+   RIPPLE EFFECT
+   ============================================ */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(192, 160, 98, 0.3);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* ============================================
+   PROGRESS BAR ANIMATIONS
+   ============================================ */
+@keyframes progressStripe {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 0; }
+}
+
+.progress-striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.1) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 40px 40px;
+  animation: progressStripe 1s linear infinite;
+}
+
+/* ============================================
+   BADGE ANIMATIONS
+   ============================================ */
+@keyframes badgeBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.badge-new {
+  animation: badgeBounce 2s ease-in-out infinite;
+}
+
+.badge-pulse {
+  position: relative;
+}
+
+.badge-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation: searchPing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ============================================
+   TAILWIND CSS ANIMATE UTILITIES
+   ============================================ */
+@keyframes enter {
+  from {
+    opacity: var(--tw-enter-opacity, 1);
+    transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), var(--tw-enter-scale, 1)) rotate(var(--tw-enter-rotate, 0));
+  }
+}
+
+@keyframes exit {
+  to {
+    opacity: var(--tw-exit-opacity, 1);
+    transform: translate3d(var(--tw-exit-translate-x, 0), var(--tw-exit-translate-y, 0), 0) scale3d(var(--tw-exit-scale, 1), var(--tw-exit-scale, 1), var(--tw-exit-scale, 1)) rotate(var(--tw-exit-rotate, 0));
+  }
+}
+
+.animate-in {
+  animation-name: enter;
+  animation-duration: 150ms;
+  --tw-enter-opacity: initial;
+  --tw-enter-scale: initial;
+  --tw-enter-rotate: initial;
+  --tw-enter-translate-x: initial;
+  --tw-enter-translate-y: initial;
+}
+
+.animate-out {
+  animation-name: exit;
+  animation-duration: 150ms;
+  --tw-exit-opacity: initial;
+  --tw-exit-scale: initial;
+  --tw-exit-rotate: initial;
+  --tw-exit-translate-x: initial;
+  --tw-exit-translate-y: initial;
+}
+
+.fade-in {
+  --tw-enter-opacity: 0;
+}
+
+.fade-out {
+  --tw-exit-opacity: 0;
+}
+
+.zoom-in-95 {
+  --tw-enter-scale: .95;
+}
+
+.zoom-out-95 {
+  --tw-exit-scale: .95;
+}
+
+.slide-in-from-top-4 {
+  --tw-enter-translate-y: -1rem;
+}
+
+.slide-in-from-bottom-4 {
+  --tw-enter-translate-y: 1rem;
+}
+
+.slide-in-from-left-4 {
+  --tw-enter-translate-x: -1rem;
+}
+
+.slide-in-from-right-4 {
+  --tw-enter-translate-x: 1rem;
+}
+
+.slide-out-to-top-4 {
+  --tw-exit-translate-y: -1rem;
+}
+
+.slide-out-to-bottom-4 {
+  --tw-exit-translate-y: 1rem;
+}
+
+.slide-out-to-left-4 {
+  --tw-exit-translate-x: -1rem;
+}
+
+.slide-out-to-right-4 {
+  --tw-exit-translate-x: 1rem;
+}
+
+.duration-150 {
+  animation-duration: 150ms;
+}
+
+.duration-200 {
+  animation-duration: 200ms;
+}
+
+.duration-300 {
+  animation-duration: 300ms;
+}
+
+/* ============================================
+   KEYBOARD SHORTCUTS STYLES
+   ============================================ */
+kbd {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+}

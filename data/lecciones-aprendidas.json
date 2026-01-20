@@ -1,0 +1,213 @@
+{
+  "version": "1.0",
+  "ultimaActualizacion": "2025-12-02T03:35:13.403Z",
+  "lecciones": [
+    {
+      "id": 1,
+      "fecha": "2025-12-01",
+      "categoria": "formato",
+      "titulo": "No generar documentos genéricos",
+      "descripcion": "Si te dan documentos adjuntos, EXTRAE los datos reales (nombres, fechas, hechos). NO uses '___' si el dato está en los documentos. NO inventes datos.",
+      "origen": "Corrección Agente 72 - Escritos judiciales",
+      "prioridad": "alta"
+    },
+    {
+      "id": 2,
+      "fecha": "2025-12-01",
+      "categoria": "entrega",
+      "titulo": "Entregar producto final, no análisis",
+      "descripcion": "Si piden un escrito → entrega EL ESCRITO, no una estrategia. Si piden un reporte → entrega EL REPORTE, no un resumen. El usuario necesita un documento USABLE INMEDIATAMENTE.",
+      "origen": "Corrección Agente 72 - Entregaba estrategias en lugar de escritos",
+      "prioridad": "alta"
+    },
+    {
+      "id": 3,
+      "fecha": "2025-12-01",
+      "categoria": "formato",
+      "titulo": "Seguir formato exacto solicitado",
+      "descripcion": "Si hay un ejemplo en el prompt → COPIA ESE FORMATO EXACTO. Si te dicen 'sin markdown' → NO uses **, ##, -, *. Si te dicen 'empieza con X' → tu primera palabra es X.",
+      "origen": "Corrección Agente 72 - No seguía el formato del ejemplo",
+      "prioridad": "alta"
+    },
+    {
+      "id": 4,
+      "fecha": "2025-12-01",
+      "categoria": "datos",
+      "titulo": "Usar datos de documentos adjuntos",
+      "descripcion": "Lee COMPLETAMENTE los documentos antes de responder. Cita fechas específicas, usa nombres exactos, referencia hechos concretos de los documentos.",
+      "origen": "Corrección Agente 72 - Usaba datos genéricos",
+      "prioridad": "alta"
+    },
+    {
+      "id": 5,
+      "fecha": "2025-12-01",
+      "categoria": "formato",
+      "titulo": "No poner encabezados de agente",
+      "descripcion": "NO escribas 'CEO - Director General IA' ni similares. NO pongas tu rol como título del documento. El documento es DEL USUARIO, no tuyo.",
+      "origen": "Corrección Agente 1 - Ponía su rol como encabezado",
+      "prioridad": "alta"
+    },
+    {
+      "id": 6,
+      "fecha": "2025-12-01",
+      "categoria": "verificacion",
+      "titulo": "Verificar con PVT antes de entregar",
+      "descripcion": "Antes de entregar: ¿Está COMPLETO? ¿Es EXACTO (datos reales)? ¿Es USABLE inmediatamente?",
+      "origen": "Implementación PVT global",
+      "prioridad": "alta"
+    },
+    {
+      "id": 7,
+      "fecha": "2025-12-02",
+      "categoria": "metodologia",
+      "titulo": "Buscar causa raíz, no parchar síntomas",
+      "descripcion": "Cuando hay un error, NO arregles solo ese caso. Pregúntate: ¿Por qué pasó? ¿Puede pasar en otros lugares? La solución debe ser SISTÉMICA.",
+      "origen": "Claude Code - Corregía Agent 72 individualmente en vez de todos",
+      "prioridad": "alta"
+    },
+    {
+      "id": 8,
+      "fecha": "2025-12-02",
+      "categoria": "metodologia",
+      "titulo": "Soluciones dinámicas, no hardcodeadas",
+      "descripcion": "Preferir archivos JSON y APIs sobre constantes. Las soluciones deben poder CRECER sin modificar código. Si algo puede cambiar, hazlo configurable.",
+      "origen": "Claude Code - Inicialmente usó constante en vez de archivo JSON",
+      "prioridad": "alta"
+    },
+    {
+      "id": 9,
+      "fecha": "2025-12-02",
+      "categoria": "codigo",
+      "titulo": "Verificar imports antes de usar módulos",
+      "descripcion": "SIEMPRE revisar que fs, path, y otros módulos estén importados antes de usarlos. Error común: usar fs.existsSync sin import fs.",
+      "origen": "Claude Code - Olvidó importar fs y path",
+      "prioridad": "alta"
+    },
+    {
+      "id": 10,
+      "fecha": "2025-12-02",
+      "categoria": "aprendizaje",
+      "titulo": "Aprender del historial antes de actuar",
+      "descripcion": "Antes de implementar CUALQUIER solución, revisar: ¿Ya se intentó esto? ¿Qué errores se cometieron antes? ¿Qué lecciones aplican aquí?",
+      "origen": "Usuario - 'TU TAMBIEN ESTAS APRENDIENDO'",
+      "prioridad": "alta"
+    },
+    {
+      "id": 11,
+      "fecha": "2025-12-02",
+      "categoria": "formato",
+      "titulo": "TODOS los agentes responden en TEXTO LIBRE",
+      "descripcion": "TODOS los agentes SIEMPRE responden en TEXTO LIBRE profesional, no en JSON. El cliente necesita documentos LEGIBLES Y USABLES inmediatamente. JSON es para sistemas internos, TEXTO es para clientes.",
+      "origen": "Usuario - 'PORQUE LOS DEMAS AGENTES NO ENTREGAN EN TEXTO LIBRE'",
+      "prioridad": "critica"
+    },
+    {
+      "id": 12,
+      "fecha": "2025-12-02",
+      "categoria": "verificacion",
+      "titulo": "EJECUTAR verificación SIEMPRE, no solo declarar",
+      "descripcion": "No basta con DECIR que apliqué PVT. Debo EJECUTAR verificación real (script, prueba, validación) y MOSTRAR los resultados al usuario ANTES de declarar que algo está listo. Si digo 'no hardcodeé' debo probar que no hay hardcoding.",
+      "origen": "Usuario - 'COMO LE HACEMOS PARA QUE SIEMPRE EJECUTES EL PVT'",
+      "prioridad": "critica"
+    },
+    {
+      "id": 13,
+      "fecha": "2025-12-02",
+      "categoria": "coherencia",
+      "titulo": "No contradecirme - verificar mis propias afirmaciones",
+      "descripcion": "Si afirmo algo (ej: 'solución dinámica'), debo verificar que sea cierto. Si digo 'PVT aplicado', debo mostrar EVIDENCIA. Mis palabras deben coincidir con mis acciones.",
+      "origen": "Usuario - 'TE CONTRADICES CON NO HARDCODEADO NO APLICADO'",
+      "prioridad": "critica"
+    },
+    {
+      "id": 14,
+      "fecha": "2025-12-02",
+      "categoria": "ux",
+      "titulo": "Solicitar documentos faltantes, no reiniciar proceso",
+      "descripcion": "Si una instrucción requiere analizar documentos pero no se adjuntaron, NO dar respuesta vacía ni genérica. SOLICITAR al usuario que adjunte los documentos para CONTINUAR el proceso sin reiniciar.",
+      "origen": "Usuario - 'CUANDO SE DE UNA INSTRUCCION DE ANALIZAR DOCUMENTOS Y ESTOS NO SE ENCUENTREN QUE SOLICITE ADJUNTARLOS'",
+      "prioridad": "alta"
+    },
+    {
+      "id": 15,
+      "fecha": "2025-12-02",
+      "categoria": "ejecucion",
+      "titulo": "EJECUTAR, no delegar ni analizar",
+      "descripcion": "Cuando se solicita un trabajo (escrito, reporte, documento), el agente debe EJECUTARLO directamente. PROHIBIDO: responder con 'ANÁLISIS INICIAL', 'DELEGACIÓN ACTIVADA', 'delegateTo', 'El Agente procesará'. El producto FINAL debe entregarse inmediatamente.",
+      "origen": "Usuario - 'RESPUESTA DEL AGENTE 72 NO LEE ARCHIVOS NO ANALIZA PROFUNDAMENTE NO GENERA ESCRITO'",
+      "prioridad": "critica"
+    },
+    {
+      "id": 16,
+      "fecha": "2025-12-02",
+      "categoria": "datos",
+      "titulo": "NUNCA INVENTAR DATOS - Leer documentos adjuntos",
+      "descripcion": "PROHIBIDO inventar nombres, expedientes, fechas o hechos. Si hay documentos adjuntos, LEERLOS PRIMERO y extraer los datos REALES. Si un dato no está en los documentos y es necesario, PREGUNTAR al usuario. Ejemplo CORRECTO: 'Según el documento adjunto X, el expediente número Y indica...' Ejemplo INCORRECTO: 'El expediente 512/2022 de María García...' (datos inventados).",
+      "origen": "Usuario - CEO inventó expediente 512/2022 con nombres falsos en lugar de leer los documentos reales",
+      "prioridad": "critica"
+    },
+    {
+      "id": 17,
+      "fecha": "2025-12-02",
+      "categoria": "delegacion",
+      "titulo": "CEO DELEGA DIRECTO temas legales/familiares al Agente 72",
+      "descripcion": "Cuando el CEO recibe instrucciones sobre temas legales/familiares (divorcio, custodia, pensión, expediente judicial, escrito legal, demanda, etc.), NO debe analizar ni generar documentos. Debe SOLO responder: 'Este caso requiere atención especializada del Agente 72 (Abogado Familiar). Por favor, seleccione el Agente 72 en el menú lateral izquierdo.' DELEGACIÓN INMEDIATA sin análisis.",
+      "origen": "Usuario - 'QUE SOLO DELEGUE EL NO TIENE QUE ANALIZAR LA INSTRUCCION ES CLARA EN ESTE CASO QUE DELEGUE DIRECTO AL AGENTE 72'",
+      "prioridad": "critica"
+    },
+    {
+      "id": 18,
+      "fecha": "2025-12-02",
+      "categoria": "arquitectura",
+      "titulo": "Corregir en FRONTEND Y BACKEND - systemPrompt vive en dos lugares",
+      "descripcion": "El systemPrompt de los agentes existe en DOS lugares: 1) Frontend (src/App.jsx) en el objeto AGENTS y 2) Backend (server/index.js) en agentSpecificInstructions. Si corrijo solo en un lugar, el otro puede sobreescribir o contaminar. SIEMPRE verificar y corregir en AMBOS lugares cuando se modifica comportamiento de agentes.",
+      "origen": "Agente 72 seguía mostrando 'ANÁLISIS INICIAL' y 'delegateTo' porque solo se corrigió en backend pero frontend tenía instrucciones del CEO que contaminaban",
+      "prioridad": "critica"
+    },
+    {
+      "id": 19,
+      "fecha": "2025-12-03",
+      "categoria": "ux",
+      "titulo": "Respuesta siempre en agente SELECCIONADO, agentId indica quién procesó",
+      "descripcion": "Cuando el servidor redirige a otro agente (ej: CEO→Agente72), la respuesta debe guardarse en instructionResponse[agenteSeleccionadoUI] para que se muestre. El servidor devuelve result.agentId indicando quién realmente procesó, y el header usa ese campo para mostrar 'Respuesta de: Agente 72'. NO guardar en result.agentId o la respuesta no se mostrará.",
+      "origen": "Usuario - 'no hay ventana de respuesta del agente 72'",
+      "prioridad": "alta"
+    },
+    {
+      "id": 20,
+      "fecha": "2025-12-03",
+      "categoria": "flujo",
+      "titulo": "Excepciones de validación para agentes con conocimiento contextual",
+      "descripcion": "Cuando hay validaciones genéricas (ej: 'requiresDocuments' para palabras como 'expediente'), deben excluir agentes que tienen conocimiento contextual del tema. El Agente 72 puede procesar 'expediente 512' sin documentos adjuntos porque tiene el contexto del caso. La validación de 'documentos requeridos' debe saltarse si el agente ya tiene el conocimiento necesario (ej: shouldRedirectToAgent72 implica que Agent72 conoce el expediente).",
+      "origen": "Error: 'expediente' disparaba validación de documentos requeridos bloqueando la redirección al Agente 72",
+      "prioridad": "critica"
+    },
+    {
+      "id": 21,
+      "fecha": "2025-12-03",
+      "categoria": "codigo",
+      "titulo": "Verificar estructura de datos en archivos JSON antes de acceder",
+      "descripcion": "Al leer datos de archivos JSON de configuración, SIEMPRE verificar que las propiedades existan antes de usarlas. La categoría 'legal' en plantillas-agentes.json tenía estructura_escrito_judicial pero NO 'estructura', causando error al hacer plantilla.estructura.map(). Agregar fallbacks: estructura = plantilla.estructura || plantilla.estructura_escrito_judicial || []",
+      "origen": "Error: Cannot read properties of undefined (reading 'map') en generarInstruccionesPlantilla",
+      "prioridad": "alta"
+    }
+  ],
+  "estadisticas": {
+    "totalLecciones": 21,
+    "porCategoria": {
+      "formato": 4,
+      "entrega": 1,
+      "datos": 2,
+      "verificacion": 2,
+      "metodologia": 2,
+      "codigo": 2,
+      "aprendizaje": 1,
+      "coherencia": 1,
+      "ux": 2,
+      "ejecucion": 1,
+      "delegacion": 1,
+      "arquitectura": 1,
+      "flujo": 1
+    }
+  }
+}
