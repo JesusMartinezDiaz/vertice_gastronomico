@@ -12,10 +12,17 @@ function log(msg) {
 
 function makeRequest(instruction, agentId = 1) {
   return new Promise((resolve, reject) => {
+
+    const agentNameById = (id) => {
+      if (parseInt(id) === 72) return 'Abogado Familiar - Custodia Querétaro';
+      if (parseInt(id) === 1) return 'CEO - Director General IA';
+      return `Agente ${id}`;
+    };
+    
     const data = JSON.stringify({
       instruction,
       agentId,
-      agentName: "CEO",
+      agentName: agentNameById(agentId),
       agentTools: [],
       documents: []
     });

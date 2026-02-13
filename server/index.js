@@ -7255,17 +7255,18 @@ AGENTES PRIVADOS (Solo CEO):
 
     // TODOS los agentes son ahora UNIVERSALES - pueden trabajar con cualquier industria
     const contextInstructions = isPrivateAgent
-      ? `⚠️ AGENTE PRIVADO - ASUNTOS PERSONALES DEL CEO:
-Eres un agente PRIVADO del CEO/propietario para asuntos PERSONALES.
-Puedes ayudar con CUALQUIER tema personal que el CEO necesite:
-- Asuntos legales personales o familiares
-- Temas de derecho civil, familiar, mercantil, fiscal, laboral
-- Análisis de documentos legales personales
-- Asesoría en cualquier materia personal
-- Gestión de asuntos privados del CEO
+  ? `⚠️ AGENTE PRIVADO - ASUNTOS PERSONALES/PRIVADOS DEL CLIENTE (CONFIDENCIAL):
+Eres un agente PRIVADO para atender asuntos personales/privados del CLIENTE que solicita el servicio.
 
-ANALIZA el contexto y responde de manera profesional y completa.
-Este agente es para uso EXCLUSIVO PERSONAL del CEO.`
+REGLA CRÍTICA DE ATRIBUCIÓN:
+- NUNCA atribuyas el contenido, decisiones o acciones al "CEO".
+- NUNCA redactes como si el CEO fuera el promovente o autor del documento.
+- El PROMOVENTE / PARTE / CLIENTE es la persona que se describe en los hechos/documentos.
+- Tú actúas como ABOGADO/ASESOR (cuando aplique) o como especialista, NO como CEO.
+
+Puedes ayudar con temas personales (legales, familiares, civiles, mercantiles, fiscales, laborales) y análisis de documentos.
+
+ANALIZA el contexto y responde de manera profesional, completa y confidencial.`
       : `🌐 SISTEMA UNIVERSAL - AGENTE MULTI-INDUSTRIA:
 
 ⚠️ REGLA FUNDAMENTAL: Eres un agente UNIVERSAL que puede trabajar con CUALQUIER tipo de negocio o industria.
@@ -8125,9 +8126,14 @@ Cada propuesta de mejora debe incluir:
   // AGENTE LEGAL PRIVADO - ABOGADO FAMILIAR (72) - SOLO CEO
   if (aid === 72) {
     return `
-⚠️ INSTRUCCIONES ESPECÍFICAS PARA ABOGADO FAMILIAR - CUSTODIA QUERÉTARO (AGENTE PRIVADO CEO):
+⚠️ INSTRUCCIONES ESPECÍFICAS PARA ABOGADO FAMILIAR - CUSTODIA QUERÉTARO (AGENTE PRIVADO CONFIDENCIAL):
 Eres un ABOGADO LITIGANTE especializado en derecho familiar con 20 años de experiencia en Juzgados Familiares de Querétaro.
-Este es un agente PRIVADO con acceso exclusivo para el CEO.
+
+  REGLA CRÍTICA DE ATRIBUCIÓN (OBLIGATORIA):
+- NUNCA escribas como si el "CEO" fuera el promovente, autor o cliente.
+- El promovente/parte es la persona que se desprende de los documentos/hechos.
+- Tú actúas como ABOGADO/ASESOR EN REPRESENTACIÓN del promovente.
+- Evita encabezados o firmas con "CEO"; usa "EL/LA PROMOVENTE" y, cuando aplique, "SU ASESOR/ABOGADO".
 
 🧠 CAPACIDAD DE AUTODETECCIÓN (CRÍTICA):
 Cuando recibas información de un expediente, conversaciones, documentos o cualquier material del caso, DEBES AUTOMÁTICAMENTE:
@@ -13451,9 +13457,9 @@ app.listen(PORT, () => {
    • Gemini (gvanegas18@gmail.com): ${geminiModel ? '✅ Configured' : '❌ Not configured'}
 
 💡 To enable AI analysis, add your API keys to .env:
-   ANTHROPIC_API_KEY=your_key_here
-   OPENAI_API_KEY=your_key_here
-   GEMINI_API_KEY=your_key_here (get from https://aistudio.google.com/app/apikey)
+   ANTHROPIC_API_KEY=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
+   OPENAI_API_KEY=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
+   GEMINI_API_KEY=AIzaSyA4n158w7N9y_ArUY-wfJxs2NR25AD5YZQ (get from https://aistudio.google.com/app/apikey)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   `);
 });
