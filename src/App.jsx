@@ -26503,8 +26503,8 @@ return (
   <h1 className="font-display text-4xl font-bold tracking-wide">
   <span className="text-[#C0A062]">VÉRTICE</span>
   </h1>
-  <p className="text-gray-300 text-sm tracking-[0.3em] uppercase font-light">Estrategia Gastronómica</p>
-  <p className="text-gray-500 text-xs tracking-wider mt-1">Gustavo Adolfo Vanegas Navarro • Director Fundador</p>
+  <p className="text-gray-300 text-sm tracking-[0.3em] uppercase font-light">Gastronómico</p>
+  
   </div>
   </div>
 
