@@ -6,6 +6,7 @@ import 'jspdf-autotable';
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, AlignmentType, ImageRun } from 'docx';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
+import logo from "./assets/logo-vertice.png";
 
 // =====================================================
 // FORMATO DE MONEDA MXN - Pesos Mexicanos
@@ -26492,35 +26493,12 @@ return (
   <div className="flex items-center gap-5 mb-4">
             {/* Prisma Logo SVG */}
   <div className="relative">
-  <svg className="w-20 h-20 drop-shadow-2xl" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                {/* Outer glow */}
-  <defs>
-  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-  <stop offset="0%" stopColor="#D4B87A"/>
-  <stop offset="50%" stopColor="#C0A062"/>
-  <stop offset="100%" stopColor="#A68B4B"/>
-  </linearGradient>
-  <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-  <stop offset="0%" stopColor="#2A2A2A"/>
-  <stop offset="100%" stopColor="#1A1A1A"/>
-  </linearGradient>
-  <filter id="glow">
-  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-  <feMerge>
-  <feMergeNode in="coloredBlur"/>
-  <feMergeNode in="SourceGraphic"/>
-  </feMerge>
-  </filter>
-  </defs>
-                {/* Shield/Prisma shape */}
-  <path d="M50 8 L85 25 L85 60 L50 92 L15 60 L15 25 Z" fill="url(#darkGradient)" stroke="url(#goldGradient)" strokeWidth="3" filter="url(#glow)"/>
-                {/* Inner V shape */}
-  <path d="M50 22 L70 35 L70 55 L50 75 L30 55 L30 35 Z" fill="none" stroke="url(#goldGradient)" strokeWidth="2.5"/>
-                {/* Central V */}
-  <path d="M35 32 L50 60 L65 32" fill="none" stroke="url(#goldGradient)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
-  <path d="M40 28 L50 48 L60 28" fill="none" stroke="#C0A062" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-  </div>
+  <img
+    src={logoVertice}
+    alt="Logo Vértice"
+    className="w-20 h-20 drop-shadow-2xl"
+  />
+</div>
   <div className="text-left">
   <h1 className="font-display text-4xl font-bold tracking-wide">
   <span className="text-[#C0A062]">VÉRTICE</span>
