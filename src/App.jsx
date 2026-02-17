@@ -26494,10 +26494,10 @@ return (
             {/* Prisma Logo SVG */}
   <div className="relative">
   <img
-    src={logoVertice}
-    alt="Logo Vértice"
-    className="w-20 h-20 drop-shadow-2xl"
-  />
+  src={logoVertice}
+  alt="Logo Vértice"
+  className="w-32 h-32 drop-shadow-2xl object-contain"
+/>
 </div>
   <div className="text-left">
   <h1 className="font-display text-4xl font-bold tracking-wide">
