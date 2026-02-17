@@ -22,6 +22,7 @@ import { configurePassport } from './services/auth.service.js';
 
 dotenv.config();
 
+
 // ============================================================================
 // 📚 SISTEMA DE APRENDIZAJE DINÁMICO - LECCIONES EN TIEMPO REAL
 // ============================================================================
@@ -1229,7 +1230,7 @@ const PORT = process.env.PORT || 3001;
 // 🔧 CONFIGURACIÓN DE CORS Y LÍMITES (Configurable por variables de entorno)
 // ============================================================================
 
-const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,http://localhost:5174,http://localhost:3000')
+const allowedOrigins = (process.env.CORS_ORIGINS || 'https://vertice-gastronomico2.onrender.com')
   .split(',')
   .map(origin => origin.trim())
   .filter(Boolean);
