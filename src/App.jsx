@@ -6,7 +6,7 @@ import 'jspdf-autotable';
 import { Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, AlignmentType, ImageRun } from 'docx';
 import { saveAs } from 'file-saver';
 import * as XLSX from 'xlsx';
-import logo from "./assets/logo-vertice.png";
+import logoVertice from "./assets/logo-vertice.png";
 
 // =====================================================
 // FORMATO DE MONEDA MXN - Pesos Mexicanos
