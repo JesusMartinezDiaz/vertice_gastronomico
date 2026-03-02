@@ -25568,22 +25568,24 @@ MEJORAS IMPLEMENTADAS EN SISTEMA VÉRTICE
         throw new Error('API error');
       }
     } catch (error) {
-      console.log('Using local processing');
-      // Fallback response
-      const responseData = {
-        response: `El agente "${agent.name}" ha recibido la instrucción:\n\n"${instruction}"\n\nHerramientas disponibles para ejecutar:\n${agent.tools.map(t => `• ${t}`).join('\n')}\n\nEl agente procesará esta instrucción utilizando sus capacidades especializadas.`,
-        status: 'received',
-        timestamp: new Date().toISOString(),
-        provider: 'local'
-      };
-      setInstructionResponse(prev => ({
-        ...prev,
-        [agentId]: responseData
-      }));
-      // Save to history and clear textarea
-      saveToHistory(agentId, instruction, responseData);
-      saveInstruction(agentId, '');
-    }
+  console.error('[processInstruction] API no disponible / falló /api/process-instruction:', error);
+
+  const responseData = {
+    status: 'api_unavailable',
+    provider: 'local',
+    timestamp: new Date().toISOString(),
+    response:
+      `No pude procesar tu instrucción con IA porque el servidor no respondió.\n\n` +
+      `✅ Verifica:\n` +
+      `1) Que el backend esté corriendo: npm run server\n` +
+      `2) Que responda: ${API_URL}/api/health\n` +
+      `3) Que exista el endpoint: POST ${API_URL}/api/process-instruction\n`
+  };
+
+  setInstructionResponse(prev => ({ ...prev, [agentId]: responseData }));
+  saveToHistory(agentId, instruction, responseData);
+  saveInstruction(agentId, '');
+}
 
     setProcessingInstruction(null);
   }, [agentInstructions, agentDocuments, saveToHistory, saveInstruction]);

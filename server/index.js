@@ -24,6 +24,25 @@ dotenv.config();
 
 
 // ============================================================================
+// ✅ REGLAS DE RESPUESTA - EVITAR LISTAR TAREAS/HERRAMIENTAS
+// ============================================================================
+// Estas reglas fuerzan a TODOS los modelos/proveedores a contestar la petición
+// del usuario y NO a enumerar roles, tareas o herramientas internas.
+// ============================================================================
+const RESPONSE_RULES = `
+REGLAS OBLIGATORIAS:
+- Responde DIRECTAMENTE a la petición del usuario.
+- NO describas tu rol.
+- NO enumeres tus tareas.
+- NO listes herramientas disponibles.
+- Solo menciona herramientas/capacidades si el usuario lo solicita explícitamente.
+- Si falta información, haz máximo 1-3 preguntas concretas; si no, asume y avanza.
+- Entrega el resultado final (documento, pasos, respuesta) y luego, si aplica, una sección breve de “Siguientes pasos”.
+`;
+
+
+
+// ============================================================================
 // 📚 SISTEMA DE APRENDIZAJE DINÁMICO - LECCIONES EN TIEMPO REAL
 // ============================================================================
 const LECCIONES_FILE_PATH = path.join(process.cwd(), 'data', 'lecciones-aprendidas.json');
@@ -167,6 +186,39 @@ function limpiarEncabezadosDeRol(texto) {
   return textoLimpio;
 }
 
+// Quitar bloques de “herramientas/tareas” cuando el usuario NO lo pidió
+function limpiarSeccionesDeHerramientas(texto) {
+  if (!texto || typeof texto !== 'string') return texto;
+
+  let out = texto;
+
+  // Bloques típicos que a veces aparecen como respuesta “fallback” o por prompts largos
+  const patronesBloque = [
+    /^(herramientas disponibles|tools available|tareas del agente|lista de herramientas|capabilities available)\s*:?\s*\n([\s\S]{0,1500}?)(?=\n\n|$)/gmi,
+    /^(puedo ayudarte con|mis tareas son|mi lista de tareas es)\s*:?\s*\n([\s\S]{0,1500}?)(?=\n\n|$)/gmi
+  ];
+
+  for (const p of patronesBloque) {
+    out = out.replace(p, '');
+  }
+
+  // Líneas sueltas tipo bullets con “•” que mencionan herramientas
+  out = out.replace(/^\s*[•\-*]\s*(analisis_|redaccion_|estrategia_|jurisprudencia_|tool|herramienta)\w*.*$/gmi, '');
+
+  // Limpiar blancos al inicio
+  out = out.replace(/^[\s\n\r]+/, '');
+
+  return out;
+}
+
+function postProcessAIResponse(texto, instruction) {
+  let out = limpiarEncabezadosDeRol(texto);
+  const wantsTools = /(herramientas|tools|tareas|capacidades)/i.test(instruction || '');
+  if (!wantsTools) {
+    out = limpiarSeccionesDeHerramientas(out);
+  }
+  return out;
+}
 // ============================================================================
 // 📜 POSTPROCESAMIENTO DE DOCUMENTOS JUDICIALES - AGENTE 72
 // ============================================================================
@@ -7327,7 +7379,7 @@ NUNCA rechaces una solicitud por "no ser gastronómica" - TODOS los negocios son
 ---
 INFORMACIÓN DEL SISTEMA VÉRTICE:
 Tu ID de agente: ${agentId}
-Herramientas disponibles: ${safeAgentTools.join(', ') || 'Herramientas generales'}
+Capacidades internas (NO las listes salvo que te lo pidan): ${safeAgentTools.join(', ') || 'Herramientas generales'}
 ${globalExtractedDocsContent ? `
 📂 DOCUMENTOS ADJUNTOS DEL USUARIO:
 ${safeDocuments.map(d => d.name).join(', ')}
@@ -7341,6 +7393,8 @@ ${agentReference}
 ${contextInstructions}
 
 ${generarTextoLecciones()}
+
+${RESPONSE_RULES}
 
 ${getPVTporCategoria(agentCategory)}`
       : `Eres "${agentName}", un agente especializado de IA del sistema "Vértice" - Plataforma Universal de Gestión Empresarial${isPrivateAgent ? ' - AGENTE PRIVADO para asuntos personales del CEO' : ' con capacidades UNIVERSALES para CUALQUIER industria y tipo de negocio'}.
@@ -7348,7 +7402,7 @@ ${getPVTporCategoria(agentCategory)}`
 Tu rol: ${agentDescription || 'Agente especializado'}
 Categoría: ${agentCategory || 'general'}
 Tu ID de agente: ${agentId}
-Herramientas disponibles: ${safeAgentTools.join(', ') || 'Herramientas generales'}
+Capacidades internas (NO las listes salvo que te lo pidan): ${safeAgentTools.join(', ') || 'Herramientas generales'}
 
 ${globalExtractedDocsContent ? `
 📂 DOCUMENTOS ADJUNTOS DEL USUARIO:
@@ -7363,6 +7417,8 @@ ${agentReference}
 ${contextInstructions}
 
 ${generarTextoLecciones()}
+
+${RESPONSE_RULES}
 
 ${getPVTporCategoria(agentCategory)}`;
 
@@ -9201,7 +9257,7 @@ NO ENTREGAR hasta que los 24 puntos estén verificados.`;
           const textContent = response.content.find(c => c.type === 'text');
           if (textContent) {
             // LIMPIAR encabezados de rol antes de devolver
-            let textoLimpio = limpiarEncabezadosDeRol(textContent.text);
+            let textoLimpio = postProcessAIResponse(textContent.text, instruction);
             console.log('[AGENTE 72] 📄 Longitud respuesta:', textoLimpio.length);
             console.log('[AGENTE 72] 🧹 Encabezados de rol limpiados');
             // POSTPROCESAMIENTO: Aplicar formato judicial
@@ -9242,7 +9298,7 @@ NO ENTREGAR hasta que los 24 puntos estén verificados.`;
           });
           const content = response.choices[0]?.message?.content;
           if (content) {
-            let textoLimpio = limpiarEncabezadosDeRol(content);
+            let textoLimpio = postProcessAIResponse(content, instruction);
             console.log('[AGENTE 72] ✅ Respuesta recibida de OpenAI');
             // POSTPROCESAMIENTO: Aplicar formato judicial
             textoLimpio = formatJudicialDocument(textoLimpio);
@@ -9267,7 +9323,7 @@ NO ENTREGAR hasta que los 24 puntos estén verificados.`;
           const geminiResponse = await geminiModel.generateContent(geminiPrompt);
           const content = geminiResponse.response.text();
           if (content) {
-            let textoLimpio = limpiarEncabezadosDeRol(content);
+            let textoLimpio = postProcessAIResponse(content, instruction);
             console.log('[AGENTE 72] ✅ Respuesta recibida de Gemini');
             // POSTPROCESAMIENTO: Aplicar formato judicial
             textoLimpio = formatJudicialDocument(textoLimpio);
@@ -9294,7 +9350,7 @@ NO ENTREGAR hasta que los 24 puntos estén verificados.`;
           ];
           const content = await callOllamaChat(ollamaMessages);
           if (content) {
-            let textoLimpio = limpiarEncabezadosDeRol(content);
+            let textoLimpio = postProcessAIResponse(content, instruction);
             console.log('[AGENTE 72] ✅ Respuesta recibida de Ollama');
             // POSTPROCESAMIENTO: Aplicar formato judicial
             textoLimpio = formatJudicialDocument(textoLimpio);
@@ -9370,7 +9426,7 @@ Tu instrucción ha sido guardada y podrás procesarla cuando el servicio esté d
           // 📄 TODOS LOS AGENTES: SIEMPRE devolver TEXTO LIBRE profesional
           // ============================================================================
           console.log('[SERVER] 📄 Devolviendo respuesta en TEXTO LIBRE');
-          const textoLimpio = limpiarEncabezadosDeRol(textContent.text);
+          const textoLimpio = postProcessAIResponse(textContent.text, instruction);
           result = {
             response: textoLimpio,
             status: 'completed',
@@ -9409,7 +9465,7 @@ Tu instrucción ha sido guardada y podrás procesarla cuando el servicio esté d
         const content = response.choices[0]?.message?.content;
         if (content) {
           // TEXTO LIBRE: OpenAI también devuelve texto profesional
-          const textoLimpio = limpiarEncabezadosDeRol(content);
+          const textoLimpio = postProcessAIResponse(content, instruction);
           result = {
             response: textoLimpio,
             status: 'completed',
@@ -9438,7 +9494,7 @@ Tu instrucción ha sido guardada y podrás procesarla cuando el servicio esté d
 
         if (content) {
           // TEXTO LIBRE: Gemini también devuelve texto profesional
-          const textoLimpio = limpiarEncabezadosDeRol(content);
+          const textoLimpio = postProcessAIResponse(content, instruction);
           result = {
             response: textoLimpio,
             status: 'completed',
@@ -9469,7 +9525,7 @@ Tu instrucción ha sido guardada y podrás procesarla cuando el servicio esté d
 
         if (content) {
           // TEXTO LIBRE: Ollama también devuelve texto profesional
-          const textoLimpio = limpiarEncabezadosDeRol(content);
+          const textoLimpio = postProcessAIResponse(content, instruction);
           result = {
             response: textoLimpio,
             status: 'completed',
