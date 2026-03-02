@@ -195,7 +195,7 @@ const MAX_FILE_SIZE = 2 * 1024 * 1024 * 1024; // 2GB
 const MAX_FILE_SIZE_DISPLAY = '2GB';
 const LARGE_FILE_THRESHOLD = 50 * 1024 * 1024; // 50MB - archivos mayores muestran progreso
 
-const getExchangeRate = async (apiUrl = 'http://localhost:3001') => {
+const getExchangeRate = async (apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:3001')) => {
   try {
     const now = Date.now();
     if (exchangeRateCache.rate && exchangeRateCache.timestamp &&
@@ -218,7 +218,7 @@ const getExchangeRate = async (apiUrl = 'http://localhost:3001') => {
   }
 };
 
-const convertUSDtoMXN = async (amountUSD, apiUrl = 'http://localhost:3001') => {
+const convertUSDtoMXN = async (amountUSD, apiUrl = (import.meta.env.VITE_API_URL || 'http://localhost:3001')) => {
   const rate = await getExchangeRate(apiUrl);
   return amountUSD * rate;
 };
@@ -25200,7 +25200,7 @@ MEJORAS IMPLEMENTADAS EN SISTEMA VÉRTICE
     }
   }, []);
 
-  const API_URL = 'http://localhost:3001';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
   const analyzeImage = useCallback(async (doc) => {
     setAnalyzingImage(doc.id);
