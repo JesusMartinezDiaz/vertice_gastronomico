@@ -2,8 +2,8 @@
  * Constantes - Vértice Gastronómico
  */
 
-export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-export const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:3001';
+export const API_URL = import.meta.env.VITE_API_URL || 'https://vertice-api-ft9u.onrender.com';
+export const WS_URL = import.meta.env.VITE_WS_URL || 'https://vertice-api-ft9u.onrender.com';
 
 // Estados de órdenes
 export const ORDER_STATUS = {
